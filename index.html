@@ -32,9 +32,9 @@ body{display:flex;gap:0;padding:0}
   flex-shrink:0;
 }
 .header-widget .header-title{
-  font-size:5.5px;
+  font-size:6.5px;
   font-weight:700;
-  color:#1a3a6b;
+  color:#000;
   text-align:center;
   line-height:1.25;
   word-break:break-word;
@@ -92,6 +92,14 @@ body{display:flex;gap:0;padding:0}
 .bg-orange .icon-svg{color:#000}
 .bg-red    .icon-svg{color:#000}
 .bg-none   .icon-svg{color:#000}
+.fonte{
+  width:100px;
+  font-size:5px;
+  color:#666;
+  text-align:right;
+  padding:1px 2px 0;
+  font-family:Arial,sans-serif;
+}
 </style>
 </head>
 <body>
@@ -161,7 +169,7 @@ async function load(){
     const data=await res.json();
     const rd={MRM:[],MCS:[]};
     data.forEach(w=>{if(rd.hasOwnProperty(w.idAreaAviso))rd[w.idAreaAviso].push(w)});
-    content.innerHTML=buildHeaderWidget()+Object.entries(REGIONS).map(([code,name])=>buildWidget(code,name,rd[code])).join('');
+    content.innerHTML=buildHeaderWidget()+Object.entries(REGIONS).map(([code,name])=>buildWidget(code,name,rd[code])).join('')+'<div class="fonte">Fonte: IPMA</div>';
     if(window.parent!==window)
       window.parent.postMessage({type:'resize',height:document.body.scrollHeight},'*');
   }catch(e){
